@@ -4,7 +4,7 @@
   hosts: test
   gather_facts: false
   vars: 
-    s3url: 'https://s3.greeninja.co.uk/rpms'
+    s3url: 'https://s3.greeninja.co.uk'
   tasks:
     - debug:
         msg: "Installing {{ pkg_version }}"
