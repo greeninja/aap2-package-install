@@ -1,0 +1,21 @@
+---
+
+- name: Install package
+  hosts: test
+  gather_facts: false
+  vars: 
+    s3url: 'https://s3.greeninja.co.uk/rpms'
+  tasks:
+    - debug:
+        msg: "Installing {{ pkg_version }}"
+    - name: Install package
+      yum:
+        name: "{{s3url}}/rpms/{{ pkg_version }}"
+        state: installed
+        disable_gpg_check: true
+        validate_certs: false
+    - name: Restart service
+      service:
+        name: "{{ pkg_version.split('/')[0] }}"
+        state: restarted
+
