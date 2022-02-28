@@ -14,7 +14,7 @@
         state: installed
         disable_gpg_check: true
         validate_certs: false
-      loop: pkg_version
+      loop: "{{ pkg_version }}"
       register: inst
     - name: Restart service
       service:
