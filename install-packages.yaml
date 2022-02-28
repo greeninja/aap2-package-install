@@ -16,9 +16,12 @@
         validate_certs: false
       loop: "{{ pkg_version }}"
       register: inst
+    - debug:
+        var: inst
     - name: Restart service
       service:
-        name: "{{ pkg_version.split('/')[0] }}"
+        name: "{{ item.split('/')[0] }}"
         state: restarted
       when: inst.changed
+      loop: "{{ pkg_version }}"
 
