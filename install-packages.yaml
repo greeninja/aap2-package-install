@@ -14,8 +14,10 @@
         state: installed
         disable_gpg_check: true
         validate_certs: false
+      register: inst
     - name: Restart service
       service:
         name: "{{ pkg_version.split('/')[0] }}"
         state: restarted
+      when: inst.changed
 
